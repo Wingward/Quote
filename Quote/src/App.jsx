@@ -2,37 +2,48 @@ import { useEffect, useRef } from 'react';
 import './App.css';
 
 const App = () => {
+  const quotes = useRef([]);
+  const quote = useRef(null);
   const quoteRef = useRef(null);
   const authorRef = useRef(null);
 
-  const getNewQuote = async () => {
+  const fetchQuotes = async () => {
     try {
       if (quoteRef.current) quoteRef.current.innerText = "Yükleniyor...";
       if (authorRef.current) authorRef.current.innerText = "";
 
-      const response = await fetch('/api/zenquotes');
+      const response = await fetch('https://zenquotes.io/api/random');
 
       if (!response.ok) throw new Error("Ağ hatası");
 
       const data = await response.json();
-      const item = data?.[0];
 
-      if (quoteRef.current) quoteRef.current.innerText = `"${item?.q}"`;
-      if (authorRef.current) authorRef.current.innerText = `— ${item?.a}`;
-
+      quotes.current = data;
+      getRandomQuote();
     } catch (error) {
       if (quoteRef.current) quoteRef.current.innerText = "ZenQuotes verisi alınamadı.";
     }
   };
 
+  const getRandomQuote = () => {
+    if (quotes.current?.length > 0) {
+      const randomIndex = Math.floor(Math.random() * quotes.current.length);
+
+      quote.current = quotes.current[randomIndex];
+
+      if (quoteRef.current) quoteRef.current.innerText = `"${quote.current?.q}"`;
+      if (authorRef.current) authorRef.current.innerText = `— ${quote.current?.a}`;
+    }
+  };
+
   useEffect(() => {
-    getNewQuote();
+    fetchQuotes();
   }, []);
 
   return (
     <div className='container'>
       <h1>Project: Quote Generator</h1>
-      <button onClick={getNewQuote}>New Quote</button>
+      <button onClick={getRandomQuote}>New Quote</button>
       <div className="quote-container">
         <p className="quote" ref={quoteRef}>Yükleniyor...</p>
         <strong className="author" ref={authorRef}></strong>
