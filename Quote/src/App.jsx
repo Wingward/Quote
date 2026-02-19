@@ -12,14 +12,13 @@ const App = () => {
       if (quoteRef.current) quoteRef.current.innerText = "Yükleniyor...";
       if (authorRef.current) authorRef.current.innerText = "";
 
-      const response = await fetch('/api/quote');
+      const response = await fetch(`/api/zenquotes?t=${new Date().getTime()}`);
 
       if (!response.ok) throw new Error("Ağ hatası");
 
       const data = await response.json();
 
       quotes.current = data;
-
       getRandomQuote();
     } catch (error) {
       if (quoteRef.current) quoteRef.current.innerText = "ZenQuotes verisi alınamadı.";
