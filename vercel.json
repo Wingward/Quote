@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+        {
+            "source": "/zenapi/:path*",
+            "destination": "https://zenquotes.io/:path*"
+        }
+    ]
+}
