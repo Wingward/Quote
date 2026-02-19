@@ -1,0 +1,92 @@
+/* Genel Sıfırlama */
+body {
+  background-color: #f0f2f5;
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: screen;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  width: 100%;
+}
+
+h1 {
+  color: #1a202c;
+  font-size: 2.2rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.025em;
+  margin-bottom: 30px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.quote-container {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 24px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  width: 100%;
+  max-width: 500px;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.quote-container:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+}
+
+.quote {
+  font-size: 1.25rem;
+  font-style: italic;
+  color: #2d3748;
+  line-height: 1.6;
+  text-align: center;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.author {
+  font-size: 0.95rem;
+  color: #4a5568;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #4f46e5;
+}
+
+button {
+  padding: 14px 28px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.4);
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  background-color: #4338ca;
+  box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.4);
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: scale(0.95);
+}
