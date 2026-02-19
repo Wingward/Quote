@@ -10,15 +10,18 @@ const App = () => {
       if (quoteRef.current) quoteRef.current.innerText = "Yükleniyor...";
       if (authorRef.current) authorRef.current.innerText = "";
 
-      const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('https://zenquotes.io/api/random')}`); const data = await response.json();
+      const response = await fetch('/api/zenquotes');
 
+      if (!response.ok) throw new Error("Ağ hatası");
+
+      const data = await response.json();
       const item = data?.[0];
 
       if (quoteRef.current) quoteRef.current.innerText = `"${item?.q}"`;
       if (authorRef.current) authorRef.current.innerText = `— ${item?.a}`;
 
     } catch (error) {
-      if (quoteRef.current) quoteRef.current.innerText = "Hata oluştu.";
+      if (quoteRef.current) quoteRef.current.innerText = "ZenQuotes verisi alınamadı.";
     }
   };
 
@@ -34,7 +37,6 @@ const App = () => {
         <p className="quote" ref={quoteRef}>Yükleniyor...</p>
         <strong className="author" ref={authorRef}></strong>
       </div>
-
     </div>
   );
 };
