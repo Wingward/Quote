@@ -10,8 +10,7 @@ const App = () => {
       if (quoteRef.current) quoteRef.current.innerText = "Yükleniyor...";
       if (authorRef.current) authorRef.current.innerText = "";
 
-      const response = await fetch('/zenapi/api/random');
-      const data = await response.json();
+      const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('https://zenquotes.io/api/random')}`); const data = await response.json();
 
       const item = data?.[0];
 
