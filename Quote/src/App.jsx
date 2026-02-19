@@ -12,13 +12,14 @@ const App = () => {
       if (quoteRef.current) quoteRef.current.innerText = "Yükleniyor...";
       if (authorRef.current) authorRef.current.innerText = "";
 
-      const response = await fetch('https://zenquotes.io/api/random');
+      const response = await fetch('/api/quote');
 
       if (!response.ok) throw new Error("Ağ hatası");
 
       const data = await response.json();
 
       quotes.current = data;
+
       getRandomQuote();
     } catch (error) {
       if (quoteRef.current) quoteRef.current.innerText = "ZenQuotes verisi alınamadı.";
@@ -43,7 +44,7 @@ const App = () => {
   return (
     <div className='container'>
       <h1>Project: Quote Generator</h1>
-      <button onClick={getRandomQuote}>New Quote</button>
+      <button onClick={fetchQuotes}>New Quote</button>
       <div className="quote-container">
         <p className="quote" ref={quoteRef}>Yükleniyor...</p>
         <strong className="author" ref={authorRef}></strong>
